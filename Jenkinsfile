@@ -27,17 +27,17 @@ pipeline {
     post {
        // only triggered when blue or green sign
        success {
-           slackSend Build Success: [John Chaves][${env.JOB_NAME}][buildTool] Ejecución exitosa.
+           slackSend (Build Success: [John Chaves][${env.JOB_NAME}][buildTool] Ejecución exitosa.)
 
        }
        // triggered when red sign
        failure {
-           slackSend Build Failed: [John Chaves][${env.JOB_NAME}][buildTool] Ejecución fallida.
+           slackSend (Build Failed: [John Chaves][${env.JOB_NAME}][buildTool] Ejecución fallida.)
 
        }
        // trigger every-works
        always {
-           slackSend ...
+           slackSend (Job finalizado.)
        }
     }
 }
