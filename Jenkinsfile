@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters{
-            choice choices: ['gradle', 'maven'], description: 'Indicar la herramienta de construcción', name: 'buildTool'
+            choice choices: ['gradle', 'maven'], description: 'Indicar la herramienta de construcciÃ³n', name: 'buildTool'
     }
 
     stages {
@@ -10,10 +10,15 @@ pipeline {
             steps {
                 script {
                     println "Pipeline"
+                    
+                    if (params.buildTool ==  "gradle") {
+                        println 'Ejecutar gradle'
+                    } else {
+                        println 'Ejecutar maven'
                     }
+
                 }
             }
         }
-        
+    }
 }
-
