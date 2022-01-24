@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters{
+            choice choices: ['gradle', 'maven'], description: 'Indicar la herramienta de construcción', name: 'buildTool'
+    }
+
     stages {
         stage('Pipeline') {
             steps {
