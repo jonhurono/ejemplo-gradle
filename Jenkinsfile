@@ -2,29 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('Compile') {
+        stage('Build & Unit Test') {
             steps {
                 script {
-                    dir("C:/Users/jjcha/Documents/Diplomado/Repos/ejemplo-maven"){
-                        sh "mvn clean compile -e"
+                    println "Stage: ${env.STAGE_NAME}"
                     }
                 }
             }
         }
-        stage('Test') {
+        stage('Sonar') {
             steps {
                 script {
-                    dir("C:/Users/jjcha/Documents/Diplomado/Repos/ejemplo-maven"){
-                        sh "mvn clean test -e"
-                    }
-                }
-            }
-        }
-        stage('Jar') {
-            steps {
-                script {
-                    dir("C:/Users/jjcha/Documents/Diplomado/Repos/ejemplo-maven"){
-                        sh "mvn clean package -e"
+                    println "Stage: ${env.STAGE_NAME}"
                     }
                 }
             }
@@ -32,23 +21,23 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    dir("C:/Users/jjcha/Documents/Diplomado/Repos/ejemplo-maven"){
-                        sh "nohup bash mvnw spring-boot:run &"
+                    println "Stage: ${env.STAGE_NAME}"
                     }
                 }
             }
         }
-        stage('Wait') {
-            steps {
-                echo "Sleep 30 seconds"
-                sleep(time: 30, unit: "SECONDS")
-            }
-        }
-        stage('Curl') {
+        stage('Test') {
             steps {
                 script {
-                    dir("C:/Users/jjcha/Documents/Diplomado/Repos/ejemplo-maven"){
-                        sh "curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
+                    println "Stage: ${env.STAGE_NAME}"
+                    }
+                }
+            }
+        }
+	stage('Nexus') {
+            steps {
+                script {
+                    println "Stage: ${env.STAGE_NAME}"
                     }
                 }
             }
