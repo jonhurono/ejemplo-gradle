@@ -24,11 +24,11 @@ pipeline {
 	                        ejecucion.call()
                         }
                     
-                    slackSend color: 'good', message: "Build Success: [${env.USER}] [${env.JOB_NAME}] [${params.buildTool}] Ejecucion exitosa!! (Revisar en el siguiente link: ${env.BUILD_URL})"
+                    slackSend color: 'good', message: "Build Success: [${env.BUILD_USER}] [${env.JOB_NAME}] [${params.buildTool}] Ejecucion exitosa!! (Revisar en el siguiente link: ${env.BUILD_URL})"
 
                     }
                     catch (Exception e){
-					    slackSend color: 'danger', message: "Build Failure: [${env.USER}] [${env.JOB_NAME}] [${params.buildTool}][Ejecucion fallida en stage ${STAGE} (Revisar en el siguiente link: ${env.BUILD_URL})"
+					    slackSend color: 'danger', message: "Build Failure: [${env.BUILD_USER}] [${env.JOB_NAME}] [${params.buildTool}][Ejecucion fallida en stage ${STAGE} (Revisar en el siguiente link: ${env.BUILD_URL})"
 					    error "Ejecucion fallida en stage ${STAGE}"
 					}
                 }
