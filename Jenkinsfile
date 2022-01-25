@@ -6,7 +6,7 @@ pipeline {
 	}
 
     parameters{
-            choice choices: ['gradle', 'maven'], description: 'Indicar la herramienta de construcciÃƒÂ³n', name: 'buildTool'
+            choice choices: ['gradle', 'maven'], description: 'Indicar la herramienta de construccion', name: 'buildTool'
     }
 
     stages {
@@ -24,12 +24,12 @@ pipeline {
 	                        ejecucion.call()
                         }
                     
-                    slackSend color: 'good', message: "Build Success: [John Chaves]['${env.JOB_NAME}'] ['${env.BUILD_NUMBER}'] Ejecución exitosa!'! (${env.BUILD_URL})"
+                    slackSend color: 'good', message: "Build Success: [${env.USER}] [${env.JOB_NAME}] [${params.buildTool}] Ejecucion exitosa!! (Revisar en el siguiente link: ${env.BUILD_URL})"
 
                     }
                     catch (Exception e){
-					    slackSend color: 'danger', message: "Build Failure: [John Chaves]['${env.JOB_NAME}'] ['${env.BUILD_NUMBER}'][Ejecución fallida en stage ${STAGE} (${env.BUILD_URL})"
-					    error "Ejecución fallida en stage ${STAGE}"
+					    slackSend color: 'danger', message: "Build Failure: [${env.USER}] [${env.JOB_NAME}] [${params.buildTool}][Ejecucion fallida en stage ${STAGE} (Revisar en el siguiente link: ${env.BUILD_URL})"
+					    error "Ejecucion fallida en stage ${STAGE}"
 					}
                 }
             }
