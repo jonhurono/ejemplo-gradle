@@ -14,6 +14,7 @@ def call(){
 
     stage('Sonar') {
         println "Stage: ${env.STAGE_NAME}"
+        ...
     }
 
     stage('Run') {
