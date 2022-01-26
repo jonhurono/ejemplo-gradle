@@ -7,29 +7,29 @@
 def call(){
   
     stage('Build & Unit Test') {
+        STAGE = env.STAGE_NAME
         sh 'env'
-        STAGE = env.STAGE
         println "Stage: ${env.STAGE_NAME}"
         sh './gradlew clean build'
     }
 
     stage('Sonar') {
-        STAGE = env.STAGE
+        STAGE = env.STAGE_NAME
         println "Stage: ${env.STAGE_NAME}"
     }
 
     stage('Run') {
-        STAGE = env.STAGE
+        STAGE = env.STAGE_NAME
         println "Stage: ${env.STAGE_NAME}"
     }
 
     stage('Test') {
-        STAGE = env.STAGE
+        STAGE = env.STAGE_NAME
         println "Stage: ${env.STAGE_NAME}"
         }
 
 	stage('Nexus') {
-        STAGE = env.STAGE
+        STAGE = env.STAGE_NAME
         println "Stage: ${env.STAGE_NAME}"
     }
     
